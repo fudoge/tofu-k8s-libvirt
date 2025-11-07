@@ -33,6 +33,7 @@ resource "libvirt_cloudinit_disk" "commoninit" {
 data "template_file" "user_data" {
   template = file("${path.module}/cloud_init.cfg")
   vars = {
-    ssh_key = file(pathexpand(var.cloud_init_ssh_key_path))
+    ssh_key  = file(pathexpand(var.cloud_init_ssh_key_path))
+    hostname = var.hostname
   }
 }
