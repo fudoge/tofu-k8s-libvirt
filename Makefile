@@ -4,8 +4,6 @@ init:
 	@$(TF_CMD) init
 up:
 	@$(TF_CMD) apply -var 'running=true'
-down:
-	@$(TF_CMD) apply -var 'running=false'
 reset:
 	@$(TF_CMD) destroy -var 'running=false' -auto-approve
 	@sudo virsh undefine cp-1 worker-1 worker-2 --nvram --managed-save -snapshots=metadata --remove-all-storage || true
