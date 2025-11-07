@@ -3,5 +3,5 @@ resource "libvirt_network" "mynw" {
   mode   = "nat"
   domain = var.network_domain
 
-  addresses = var.network_addr
+  addresses = var.network_addresses
 }

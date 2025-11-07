@@ -1,4 +1,4 @@
-output "id" {
+output "network_id" {
   description = "Network ID"
   value       = libvirt_network.mynw.id
 }

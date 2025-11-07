@@ -13,7 +13,7 @@ locals {
       memory      = 2048
       volume_size = 20 * 1024 * 1024 * 1024
       addresses   = ["192.168.100.200"]
-    }
+    },
     "worker-2" = {
       name        = "worker-2"
       vcpu        = 2
@@ -35,7 +35,7 @@ module "network" {
 
 module "base_volume" {
   source            = "./modules/volume"
-  base_image_source = "https://cloud-images.ubuntu.com/noble/20251026/noble-server-cloudimg-amd64/img"
+  base_image_source = "https://cloud-images.ubuntu.com/noble/20251026/noble-server-cloudimg-amd64.img"
 }
 
 module "vm" {
@@ -44,16 +44,16 @@ module "vm" {
 
   running = var.running
 
-  vm_name  = each.name
-  hostname = each.name
-  vcpu     = each.vcpu
-  memory   = each.memory
+  vm_name  = each.value.name
+  hostname = each.value.name
+  vcpu     = each.value.vcpu
+  memory   = each.value.memory
 
-  base_volume_id = output.base_volume.id
-  volume_size    = each.volume_size
+  base_volume_id = module.base_volume.base_id
+  volume_size    = each.value.volume_size
 
-  network_id = output.network.id
-  addresses  = each.addresses
+  network_id = module.network.network_id
+  addresses  = each.value.addresses
 
   cloud_init_ssh_key_path = var.ssh_key_path
 }
