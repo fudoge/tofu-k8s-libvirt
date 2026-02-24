@@ -35,7 +35,7 @@ module "network" {
 
 module "base_volume" {
   source            = "./modules/volume"
-  base_image_source = "https://cloud-images.ubuntu.com/noble/20251026/noble-server-cloudimg-amd64.img"
+  base_image_source = "https://cloud-images.ubuntu.com/noble/20260217/noble-server-cloudimg-amd64.img"
 }
 
 module "vm" {
